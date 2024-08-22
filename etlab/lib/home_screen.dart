@@ -1,3 +1,4 @@
+import 'package:etlab/login.dart';
 import 'package:flutter/material.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -66,14 +67,24 @@ class HomeScreen extends StatelessWidget {
               height: 20,
             ),
             ElevatedButton(
-              onPressed: () {},
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => LoginScreen()),
+                );
+              },
               child: Text(
                 'Login',
                 style: TextStyle(color: Colors.white),
               ),
               style: ElevatedButton.styleFrom(backgroundColor: Colors.green),
             ),
-            TextButton(onPressed: (){}, child: Text("Forgot Password?",style: TextStyle(color: Colors.indigo),)),
+            TextButton(
+                onPressed: () {},
+                child: Text(
+                  "Forgot Password?",
+                  style: TextStyle(color: Colors.indigo),
+                )),
           ],
         ),
       ),
