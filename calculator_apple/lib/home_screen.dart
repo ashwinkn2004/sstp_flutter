@@ -44,7 +44,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   ),
                   child: const Text(
                     'C',
-                    style: TextStyle(fontSize: 40, color: Colors.white),
+                    style: TextStyle(fontSize: 40, color: Colors.black),
                   ),
                 ),
               ),
