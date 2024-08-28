@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -8,6 +9,7 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+  String ans = '0';
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -18,20 +20,20 @@ class _HomeScreenState extends State<HomeScreen> {
             height: 330,
             width: MediaQuery.of(context).size.width,
             color: Colors.black,
-            child: const Padding(
-              padding: EdgeInsets.fromLTRB(300, 170, 0, 0),
+            child: Padding(
+              padding: const EdgeInsets.fromLTRB(300, 170, 0, 0),
               child: Text(
-                '0',
-                style: TextStyle(
-                    color: Colors.white,
-                    fontWeight: FontWeight.bold,
-                    fontSize: 100),
+                ans,
+                style: GoogleFonts.montserrat(
+                  color: Colors.white,
+                  fontWeight: FontWeight.bold,
+                  fontSize: 100,
+                ),
               ),
             ),
           ),
           Row(
             children: [
-              // ignore: prefer_const_constructors, sort_child_properties_last
               Padding(
                 padding: const EdgeInsets.only(left: 10),
                 child: ElevatedButton(
@@ -42,17 +44,16 @@ class _HomeScreenState extends State<HomeScreen> {
                     padding: const EdgeInsets.all(
                         20), // Adjust padding to control button size
                   ),
-                  child: const Text(
+                  child: Text(
                     'C',
-                    style: TextStyle(fontSize: 40, color: Colors.black),
+                    style: GoogleFonts.montserrat(
+                        fontSize: 30, color: Colors.black),
                   ),
                 ),
               ),
-
               const SizedBox(
                 width: 30,
               ),
-
               ElevatedButton(
                 onPressed: () {},
                 style: ElevatedButton.styleFrom(
@@ -61,16 +62,15 @@ class _HomeScreenState extends State<HomeScreen> {
                   padding: const EdgeInsets.all(
                       20), // Adjust padding to control button size
                 ),
-                child: const Text(
-                  'DEL',
-                  style: TextStyle(fontSize: 20, color: Colors.black),
+                child: Text(
+                  'DE',
+                  style:
+                      GoogleFonts.montserrat(fontSize: 22, color: Colors.black),
                 ),
               ),
-
               const SizedBox(
                 width: 30,
               ),
-
               ElevatedButton(
                 onPressed: () {},
                 style: ElevatedButton.styleFrom(
@@ -79,16 +79,15 @@ class _HomeScreenState extends State<HomeScreen> {
                   padding: const EdgeInsets.all(
                       20), // Adjust padding to control button size
                 ),
-                child: const Text(
+                child: Text(
                   '%',
-                  style: TextStyle(fontSize: 40, color: Colors.black),
+                  style:
+                      GoogleFonts.montserrat(fontSize: 30, color: Colors.black),
                 ),
               ),
-
               const SizedBox(
                 width: 30,
               ),
-
               ElevatedButton(
                 onPressed: () {},
                 style: ElevatedButton.styleFrom(
@@ -97,58 +96,59 @@ class _HomeScreenState extends State<HomeScreen> {
                   padding: const EdgeInsets.all(
                       20), // Adjust padding to control button size
                 ),
-                child: const Text(
+                child: Text(
                   '÷',
-                  style: TextStyle(fontSize: 40, color: Colors.white),
+                  style:
+                      GoogleFonts.montserrat(fontSize: 40, color: Colors.white),
                 ),
-              )
+              ),
             ],
           ),
-
-          //second row
-
+          // Second row
           Row(
             children: [
-              // ignore: prefer_const_constructors, sort_child_properties_last
               Padding(
                 padding: const EdgeInsets.only(left: 10),
                 child: ElevatedButton(
                   onPressed: () {},
                   style: ElevatedButton.styleFrom(
-                    backgroundColor: const Color(0xFF505050), // Background color
+                    backgroundColor:
+                        const Color(0xFF505050), // Background color
                     shape: const CircleBorder(), // Make the button circular
                     padding: const EdgeInsets.all(
                         20), // Adjust padding to control button size
                   ),
-                  child: const Text(
+                  child: Text(
                     '7',
-                    style: TextStyle(fontSize: 40, color: Colors.white),
+                    style: GoogleFonts.montserrat(
+                        fontSize: 40, color: Colors.white),
                   ),
                 ),
               ),
-
               const SizedBox(
                 width: 30,
               ),
-
               ElevatedButton(
-                onPressed: () {},
+                onPressed: () {
+                  setState(() {
+                    ans += '8';
+                  });
+                },
                 style: ElevatedButton.styleFrom(
                   backgroundColor: const Color(0xFF505050), // Background color
                   shape: const CircleBorder(), // Make the button circular
                   padding: const EdgeInsets.all(
                       20), // Adjust padding to control button size
                 ),
-                child: const Text(
+                child: Text(
                   '8',
-                  style: TextStyle(fontSize: 40, color: Colors.white),
+                  style:
+                      GoogleFonts.montserrat(fontSize: 40, color: Colors.white),
                 ),
               ),
-
               const SizedBox(
                 width: 30,
               ),
-
               ElevatedButton(
                 onPressed: () {},
                 style: ElevatedButton.styleFrom(
@@ -157,16 +157,15 @@ class _HomeScreenState extends State<HomeScreen> {
                   padding: const EdgeInsets.all(
                       20), // Adjust padding to control button size
                 ),
-                child: const Text(
+                child: Text(
                   '9',
-                  style: TextStyle(fontSize: 40, color: Colors.white),
+                  style:
+                      GoogleFonts.montserrat(fontSize: 40, color: Colors.white),
                 ),
               ),
-
               const SizedBox(
                 width: 30,
               ),
-
               ElevatedButton(
                 onPressed: () {},
                 style: ElevatedButton.styleFrom(
@@ -175,40 +174,38 @@ class _HomeScreenState extends State<HomeScreen> {
                   padding: const EdgeInsets.all(
                       20), // Adjust padding to control button size
                 ),
-                child: const Text(
+                child: Text(
                   '×',
-                  style: TextStyle(fontSize: 40, color: Colors.white),
+                  style:
+                      GoogleFonts.montserrat(fontSize: 40, color: Colors.white),
                 ),
-              )
+              ),
             ],
           ),
-
-          //third row
-
+          // Third row
           Row(
             children: [
-              // ignore: prefer_const_constructors, sort_child_properties_last
               Padding(
                 padding: const EdgeInsets.only(left: 10),
                 child: ElevatedButton(
                   onPressed: () {},
                   style: ElevatedButton.styleFrom(
-                    backgroundColor: const Color(0xFF505050), // Background color
+                    backgroundColor:
+                        const Color(0xFF505050), // Background color
                     shape: const CircleBorder(), // Make the button circular
                     padding: const EdgeInsets.all(
                         20), // Adjust padding to control button size
                   ),
-                  child: const Text(
+                  child: Text(
                     '4',
-                    style: TextStyle(fontSize: 40, color: Colors.white),
+                    style: GoogleFonts.montserrat(
+                        fontSize: 40, color: Colors.white),
                   ),
                 ),
               ),
-
               const SizedBox(
                 width: 30,
               ),
-
               ElevatedButton(
                 onPressed: () {},
                 style: ElevatedButton.styleFrom(
@@ -217,16 +214,15 @@ class _HomeScreenState extends State<HomeScreen> {
                   padding: const EdgeInsets.all(
                       20), // Adjust padding to control button size
                 ),
-                child: const Text(
+                child: Text(
                   '5',
-                  style: TextStyle(fontSize: 40, color: Colors.white),
+                  style:
+                      GoogleFonts.montserrat(fontSize: 40, color: Colors.white),
                 ),
               ),
-
               const SizedBox(
                 width: 30,
               ),
-
               ElevatedButton(
                 onPressed: () {},
                 style: ElevatedButton.styleFrom(
@@ -235,16 +231,15 @@ class _HomeScreenState extends State<HomeScreen> {
                   padding: const EdgeInsets.all(
                       20), // Adjust padding to control button size
                 ),
-                child: const Text(
+                child: Text(
                   '6',
-                  style: TextStyle(fontSize: 40, color: Colors.white),
+                  style:
+                      GoogleFonts.montserrat(fontSize: 40, color: Colors.white),
                 ),
               ),
-
               const SizedBox(
                 width: 30,
               ),
-
               ElevatedButton(
                 onPressed: () {},
                 style: ElevatedButton.styleFrom(
@@ -253,40 +248,38 @@ class _HomeScreenState extends State<HomeScreen> {
                   padding: const EdgeInsets.all(
                       20), // Adjust padding to control button size
                 ),
-                child: const Text(
+                child: Text(
                   '−',
-                  style: TextStyle(fontSize: 40, color: Colors.white),
+                  style:
+                      GoogleFonts.montserrat(fontSize: 40, color: Colors.white),
                 ),
-              )
+              ),
             ],
           ),
-
-          //fourth row
-
+          // Fourth row
           Row(
             children: [
-              // ignore: prefer_const_constructors, sort_child_properties_last
               Padding(
                 padding: const EdgeInsets.only(left: 10),
                 child: ElevatedButton(
                   onPressed: () {},
                   style: ElevatedButton.styleFrom(
-                    backgroundColor: const Color(0xFF505050), // Background color
+                    backgroundColor:
+                        const Color(0xFF505050), // Background color
                     shape: const CircleBorder(), // Make the button circular
                     padding: const EdgeInsets.all(
                         20), // Adjust padding to control button size
                   ),
-                  child: const Text(
+                  child: Text(
                     '1',
-                    style: TextStyle(fontSize: 40, color: Colors.white),
+                    style: GoogleFonts.montserrat(
+                        fontSize: 40, color: Colors.white),
                   ),
                 ),
               ),
-
               const SizedBox(
                 width: 30,
               ),
-
               ElevatedButton(
                 onPressed: () {},
                 style: ElevatedButton.styleFrom(
@@ -295,16 +288,15 @@ class _HomeScreenState extends State<HomeScreen> {
                   padding: const EdgeInsets.all(
                       20), // Adjust padding to control button size
                 ),
-                child: const Text(
+                child: Text(
                   '2',
-                  style: TextStyle(fontSize: 40, color: Colors.white),
+                  style:
+                      GoogleFonts.montserrat(fontSize: 40, color: Colors.white),
                 ),
               ),
-
               const SizedBox(
                 width: 30,
               ),
-
               ElevatedButton(
                 onPressed: () {},
                 style: ElevatedButton.styleFrom(
@@ -313,16 +305,15 @@ class _HomeScreenState extends State<HomeScreen> {
                   padding: const EdgeInsets.all(
                       20), // Adjust padding to control button size
                 ),
-                child: const Text(
+                child: Text(
                   '3',
-                  style: TextStyle(fontSize: 40, color: Colors.white),
+                  style:
+                      GoogleFonts.montserrat(fontSize: 40, color: Colors.white),
                 ),
               ),
-
               const SizedBox(
                 width: 30,
               ),
-
               ElevatedButton(
                 onPressed: () {},
                 style: ElevatedButton.styleFrom(
@@ -331,40 +322,38 @@ class _HomeScreenState extends State<HomeScreen> {
                   padding: const EdgeInsets.all(
                       20), // Adjust padding to control button size
                 ),
-                child: const Text(
+                child: Text(
                   '+',
-                  style: TextStyle(fontSize: 40, color: Colors.white),
+                  style:
+                      GoogleFonts.montserrat(fontSize: 40, color: Colors.white),
                 ),
-              )
+              ),
             ],
           ),
-
-          //fifth row
-
+          // Fifth row
           Row(
             children: [
-              // ignore: prefer_const_constructors, sort_child_properties_last
               Padding(
                 padding: const EdgeInsets.only(left: 10),
                 child: ElevatedButton(
                   onPressed: () {},
                   style: ElevatedButton.styleFrom(
-                    backgroundColor: const Color(0xFF505050), // Background color
+                    backgroundColor:
+                        const Color(0xFF505050), // Background color
                     shape: const CircleBorder(), // Make the button circular
                     padding: const EdgeInsets.all(
                         20), // Adjust padding to control button size
                   ),
-                  child: const Text(
+                  child: Text(
                     '00',
-                    style: TextStyle(fontSize: 20, color: Colors.white),
+                    style: GoogleFonts.montserrat(
+                        fontSize: 20, color: Colors.white),
                   ),
                 ),
               ),
-
               const SizedBox(
                 width: 30,
               ),
-
               ElevatedButton(
                 onPressed: () {},
                 style: ElevatedButton.styleFrom(
@@ -373,16 +362,15 @@ class _HomeScreenState extends State<HomeScreen> {
                   padding: const EdgeInsets.all(
                       20), // Adjust padding to control button size
                 ),
-                child: const Text(
+                child: Text(
                   '0',
-                  style: TextStyle(fontSize: 40, color: Colors.white),
+                  style:
+                      GoogleFonts.montserrat(fontSize: 40, color: Colors.white),
                 ),
               ),
-
               const SizedBox(
                 width: 30,
               ),
-
               ElevatedButton(
                 onPressed: () {},
                 style: ElevatedButton.styleFrom(
@@ -391,16 +379,15 @@ class _HomeScreenState extends State<HomeScreen> {
                   padding: const EdgeInsets.all(
                       20), // Adjust padding to control button size
                 ),
-                child: const Text(
+                child: Text(
                   '.',
-                  style: TextStyle(fontSize: 40, color: Colors.white),
+                  style:
+                      GoogleFonts.montserrat(fontSize: 40, color: Colors.white),
                 ),
               ),
-
               const SizedBox(
                 width: 30,
               ),
-
               ElevatedButton(
                 onPressed: () {},
                 style: ElevatedButton.styleFrom(
@@ -409,11 +396,12 @@ class _HomeScreenState extends State<HomeScreen> {
                   padding: const EdgeInsets.all(
                       20), // Adjust padding to control button size
                 ),
-                child: const Text(
+                child: Text(
                   '=',
-                  style: TextStyle(fontSize: 40, color: Colors.white),
+                  style:
+                      GoogleFonts.montserrat(fontSize: 40, color: Colors.white),
                 ),
-              )
+              ),
             ],
           ),
         ],
