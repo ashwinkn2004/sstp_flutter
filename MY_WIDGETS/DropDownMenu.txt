@@ -1,0 +1,17 @@
+DropdownButton(
+              value: selectDepartment,
+              hint: Text('Select Department'),
+              items: department.map<DropdownMenuItem<String>>(
+                (String value) {
+                  return DropdownMenuItem<String>(
+                    value: value,
+                    child: Text(value),
+                  );
+                },
+              ).toList(),
+              onChanged: (value) {
+                setState(() {
+                  selectDepartment = value;
+                });
+              },
+            ),
