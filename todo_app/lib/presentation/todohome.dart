@@ -13,6 +13,8 @@ class _ScreenTodoState extends State<ScreenTodo> {
   final todoController = TextEditingController();
   int id = 0;
   int editFlag = 0;
+  late String todoId;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -64,7 +66,7 @@ class _ScreenTodoState extends State<ScreenTodo> {
                       if (editFlag == 0) {
                         addTask();
                       } else {
-                        editTask();
+                        editTask(todoId);
                       }
                     },
                     child: Text(editFlag == 0 ? 'Add' : 'Edit'),
@@ -97,6 +99,7 @@ class _ScreenTodoState extends State<ScreenTodo> {
                         ),
                       ),
                       Spacer(),
+                      
                       IconButton(
                         onPressed: () {
                           deleteTask(todoList[index].taskId);
@@ -107,6 +110,7 @@ class _ScreenTodoState extends State<ScreenTodo> {
                         onPressed: () {
                           setState(() {
                             todoController.text = todoList[index].taskName;
+                            todoId = todoList[index].taskId;
                             editFlag = 1;
                           });
                         },
@@ -154,7 +158,7 @@ class _ScreenTodoState extends State<ScreenTodo> {
     });
   }
 
-  void editTask() {
+  void editTask(String id) {
     setState(() {
       for (var doc in todoList) {
         if (doc.taskId == id.toString()) {
