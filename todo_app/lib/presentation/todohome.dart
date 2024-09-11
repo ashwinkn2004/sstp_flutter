@@ -9,16 +9,10 @@ class ScreenTodo extends StatefulWidget {
 }
 
 class _ScreenTodoState extends State<ScreenTodo> {
-  List<TodoModel> todoList = [
-    TodoModel(taskId: '1', taskName: 'A', taskStatus: '0'),
-    TodoModel(taskId: '2', taskName: 'B', taskStatus: '0'),
-    TodoModel(taskId: '3', taskName: 'C', taskStatus: '0'),
-    TodoModel(taskId: '4', taskName: 'D', taskStatus: '0'),
-    TodoModel(taskId: '5', taskName: 'A', taskStatus: '0'),
-    TodoModel(taskId: '6', taskName: 'B', taskStatus: '0'),
-    TodoModel(taskId: '7', taskName: 'C', taskStatus: '0'),
-    TodoModel(taskId: '8', taskName: 'D', taskStatus: '0'),
-  ];
+  List<TodoModel> todoList = [];
+  final todoController = TextEditingController();
+  int id = 0;
+  int editFlag = 0;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -45,7 +39,7 @@ class _ScreenTodoState extends State<ScreenTodo> {
                   child: Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: TextFormField(
-                      //controller: nameController,
+                      controller: todoController,
                       validator: (value) {
                         if (value == null || value.isEmpty) {
                           return 'Name Cannot be empty!';
@@ -66,8 +60,14 @@ class _ScreenTodoState extends State<ScreenTodo> {
                 Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: ElevatedButton(
-                    onPressed: () {},
-                    child: const Text("Add"),
+                    onPressed: () {
+                      if (editFlag == 0) {
+                        addTask();
+                      } else {
+                        editTask();
+                      }
+                    },
+                    child: Text(editFlag == 0 ? 'Add' : 'Edit'),
                   ),
                 ),
               ],
@@ -79,8 +79,41 @@ class _ScreenTodoState extends State<ScreenTodo> {
             child: ListView.builder(
               itemBuilder: (context, index) {
                 return ListTile(
-                  leading: Text({index+1}.toString()),
+                  leading: Text({index + 1}.toString()),
+                  onTap: () {
+                    changeStatus(todoList[index].taskId);
+                  },
                   title: Text(todoList[index].taskName),
+                  subtitle: Row(
+                    children: [
+                      Text(
+                        todoList[index].taskStatus == '0'
+                            ? 'Pending'
+                            : 'Completed',
+                        style: TextStyle(
+                          color: todoList[index].taskStatus == '0'
+                              ? Colors.red
+                              : Colors.green,
+                        ),
+                      ),
+                      Spacer(),
+                      IconButton(
+                        onPressed: () {
+                          deleteTask(todoList[index].taskId);
+                        },
+                        icon: const Icon(Icons.delete),
+                      ),
+                      IconButton(
+                        onPressed: () {
+                          setState(() {
+                            todoController.text = todoList[index].taskName;
+                            editFlag = 1;
+                          });
+                        },
+                        icon: const Icon(Icons.edit),
+                      ),
+                    ],
+                  ),
                 );
               },
               itemCount: todoList.length,
@@ -89,5 +122,47 @@ class _ScreenTodoState extends State<ScreenTodo> {
         ],
       )),
     );
+  }
+
+  void addTask() {
+    TodoModel t = TodoModel(
+        taskId: id.toString(), taskName: todoController.text, taskStatus: '0');
+    id++;
+    setState(() {
+      todoList.add(t);
+      todoController.text = '';
+    });
+  }
+
+  void changeStatus(String id) {
+    setState(() {
+      for (var doc in todoList) {
+        if (doc.taskId == id) {
+          if (doc.taskStatus == '0') {
+            doc.taskStatus = '1';
+          } else {
+            doc.taskStatus = '0';
+          }
+        }
+      }
+    });
+  }
+
+  void deleteTask(String id) {
+    setState(() {
+      todoList.removeWhere((todo) => todo.taskId == id);
+    });
+  }
+
+  void editTask() {
+    setState(() {
+      for (var doc in todoList) {
+        if (doc.taskId == id.toString()) {
+          doc.taskName = todoController.text;
+          editFlag = 0;
+          todoController.text = '';
+        }
+      }
+    });
   }
 }
