@@ -1,3 +1,5 @@
+
+
 import 'package:flutter/material.dart';
 import 'package:employee_payroll/pay_roll.dart';
 
@@ -17,6 +19,11 @@ class _DetailsScreenState extends State<DetailsScreen> {
 
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   final nameController = TextEditingController();
+  final empIdController = TextEditingController();
+  final emailController = TextEditingController();
+  final mobileController = TextEditingController();
+  final addressController = TextEditingController();
+  final bpController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -67,7 +74,8 @@ class _DetailsScreenState extends State<DetailsScreen> {
               ),
               Padding(
                 padding: const EdgeInsets.all(8.0),
-                child: TextField(
+                child: TextFormField(
+                  controller: empIdController,
                   decoration: InputDecoration(
                       hintText: 'Employee ID',
                       hintStyle: TextStyle(
@@ -77,20 +85,6 @@ class _DetailsScreenState extends State<DetailsScreen> {
                           borderRadius: BorderRadius.circular(10))),
                 ),
               ),
-
-              /*Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: TextField(
-                  decoration: InputDecoration(
-                      hintText: 'Department',
-                      hintStyle: TextStyle(
-                        color: Colors.grey[500],
-                      ),
-                      border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(10))),
-                ),
-              ),*/
-
               DropdownButton(
                 value: selectDepartment,
                 hint: Text('Select Department'),
@@ -110,7 +104,8 @@ class _DetailsScreenState extends State<DetailsScreen> {
               ),
               Padding(
                 padding: const EdgeInsets.all(8.0),
-                child: TextField(
+                child: TextFormField(
+                  controller: emailController,
                   decoration: InputDecoration(
                       hintText: 'Email',
                       hintStyle: TextStyle(
@@ -120,19 +115,6 @@ class _DetailsScreenState extends State<DetailsScreen> {
                           borderRadius: BorderRadius.circular(10))),
                 ),
               ),
-              /*Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: TextField(
-                  decoration: InputDecoration(
-                      hintText: 'Gender',
-                      hintStyle: TextStyle(
-                        color: Colors.grey[500],
-                      ),
-                      border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(10))),
-                ),
-              ),*/
-
               DropdownButton(
                 value: selectGender,
                 hint: Text('Select Gender'),
@@ -146,13 +128,14 @@ class _DetailsScreenState extends State<DetailsScreen> {
                 ).toList(),
                 onChanged: (value) {
                   setState(() {
-                    selectDepartment = value;
+                    selectGender = value;
                   });
                 },
               ),
               Padding(
                 padding: const EdgeInsets.all(8.0),
-                child: TextField(
+                child: TextFormField(
+                  controller: mobileController,
                   keyboardType: TextInputType.numberWithOptions(),
                   decoration: InputDecoration(
                       hintText: 'Mobile Number',
@@ -165,7 +148,8 @@ class _DetailsScreenState extends State<DetailsScreen> {
               ),
               Padding(
                 padding: const EdgeInsets.all(8.0),
-                child: TextField(
+                child: TextFormField(
+                  controller: addressController,
                   decoration: InputDecoration(
                     hintText: 'Address',
                     hintStyle: TextStyle(
@@ -179,7 +163,8 @@ class _DetailsScreenState extends State<DetailsScreen> {
               ),
               Padding(
                 padding: const EdgeInsets.all(8.0),
-                child: TextField(
+                child: TextFormField(
+                  controller: bpController,
                   decoration: InputDecoration(
                       hintText: 'Basic Pay',
                       hintStyle: TextStyle(
@@ -191,8 +176,19 @@ class _DetailsScreenState extends State<DetailsScreen> {
               ),
               ElevatedButton(
                 onPressed: () {
-                  Navigator.push(context,
-                      MaterialPageRoute(builder: (context) => const PayRoll()));
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => PayRoll(
+                                name: nameController.text,
+                                empId: empIdController.text,
+                                email: emailController.text,
+                                address: addressController.text,
+                                mobile: mobileController.text,
+                                basicPay: bpController.text,
+                                department: selectDepartment!,
+                                gender: selectGender!,
+                              )));
                 },
                 style: ButtonStyle(
                   backgroundColor: MaterialStatePropertyAll(Colors.grey[800]),
