@@ -14,6 +14,7 @@ class _ScreenTodoState extends State<ScreenTodo> {
   int id = 0;
   int editFlag = 0;
   late String todoId;
+  bool Vis = false;
 
   @override
   Widget build(BuildContext context) {
@@ -59,14 +60,31 @@ class _ScreenTodoState extends State<ScreenTodo> {
                     ),
                   ),
                 ),
+                Visibility(
+                  visible: editFlag == 1 ? true : false,
+                  child: Padding(
+                    padding: const EdgeInsets.all(1),
+                    child: TextButton(
+                      onPressed: () {
+                        setState(() {
+                          todoController.text = '';
+                          editFlag = 0;
+                        });
+                      },
+                      child: Text('X'),
+                    ),
+                  ),
+                ),
                 Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: ElevatedButton(
                     onPressed: () {
                       if (editFlag == 0) {
                         addTask();
+                        //Vis = false;
                       } else {
                         editTask(todoId);
+                        //Vis = true;
                       }
                     },
                     child: Text(editFlag == 0 ? 'Add' : 'Edit'),
@@ -99,7 +117,6 @@ class _ScreenTodoState extends State<ScreenTodo> {
                         ),
                       ),
                       Spacer(),
-                      
                       IconButton(
                         onPressed: () {
                           deleteTask(todoList[index].taskId);
@@ -133,7 +150,9 @@ class _ScreenTodoState extends State<ScreenTodo> {
         taskId: id.toString(), taskName: todoController.text, taskStatus: '0');
     id++;
     setState(() {
-      todoList.add(t);
+      if(todoController.text.isNotEmpty){
+        todoList.add(t);
+      }
       todoController.text = '';
     });
   }
@@ -162,7 +181,9 @@ class _ScreenTodoState extends State<ScreenTodo> {
     setState(() {
       for (var doc in todoList) {
         if (doc.taskId == id.toString()) {
-          doc.taskName = todoController.text;
+          if(todoController.text.isNotEmpty){
+            doc.taskName = todoController.text;
+          }
           editFlag = 0;
           todoController.text = '';
         }
