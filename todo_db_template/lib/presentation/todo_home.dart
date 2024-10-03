@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:todo_db_template/domain/todo/todo_model.dart';
+import 'package:todo_db_template/infrastructure/todo_db.dart';
 
 class ScreenTodoHome extends StatefulWidget {
   const ScreenTodoHome({super.key});
@@ -15,6 +16,7 @@ class _ScreenTodoHomeState extends State<ScreenTodoHome> {
   List<TodoModel> todoModelList = [];
   @override
   Widget build(BuildContext context) {
+    loadingDatabase();
     return Scaffold(
       appBar: AppBar(
         title: const Text(
@@ -58,7 +60,11 @@ class _ScreenTodoHomeState extends State<ScreenTodoHome> {
                       child: ElevatedButton(
                           onPressed: () {
                             if (_formKey.currentState!.validate()) {
-                              todoController.text = '';
+                              TodoModel t = TodoModel(
+                                  todoId: 1,
+                                  todoName: todoController.text,
+                                  todoStatus: '0');
+                              insertDatabase(t);
                             }
                           },
                           child: const Text('Add')),
@@ -114,5 +120,9 @@ class _ScreenTodoHomeState extends State<ScreenTodoHome> {
         ),
       ),
     );
+  }
+
+  Future<void> loadingDatabase() async {
+    await loadDatabase();
   }
 }

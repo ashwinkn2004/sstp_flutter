@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:todo_db_template/infrastructure/todo_db.dart';
 import 'package:todo_db_template/presentation/splash_screen.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding
+      .ensureInitialized(); // initially initialize the database
+  await initializeDatabase();
   runApp(const MainApp());
 }
 
