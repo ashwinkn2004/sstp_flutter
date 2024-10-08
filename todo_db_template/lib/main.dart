@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:todo_db_template/infrastructure/todo_db.dart';
-import 'package:todo_db_template/presentation/splash_screen.dart';
+//import 'package:todo_db_template/presentation/splash_screen.dart';
+import 'package:todo_db_template/presentation/todo_home.dart';
 
 void main() async {
   WidgetsFlutterBinding
@@ -17,7 +18,7 @@ class MainApp extends StatelessWidget {
     return const MaterialApp(
       home: Scaffold(
         body: Center(
-          child: ScreenSplash(),
+          child: ScreenTodoHome(),
         ),
       ),
     );

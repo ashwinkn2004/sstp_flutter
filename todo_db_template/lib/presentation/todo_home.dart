@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:todo_db_template/core/core.dart';
 import 'package:todo_db_template/domain/todo/todo_model.dart';
 import 'package:todo_db_template/infrastructure/todo_db.dart';
 
@@ -66,6 +67,9 @@ class _ScreenTodoHomeState extends State<ScreenTodoHome> {
                                   todoStatus: '0');
                               insertDatabase(t);
                             }
+                            setState(() {
+                              todoController.clear();
+                            });
                           },
                           child: const Text('Add')),
                     )
@@ -109,7 +113,12 @@ class _ScreenTodoHomeState extends State<ScreenTodoHome> {
                               },
                               icon: const Icon(Icons.edit)),
                           IconButton(
-                              onPressed: () {}, icon: const Icon(Icons.delete)),
+                              onPressed: () async {
+                                await deleteDatabase(
+                                  todoModelList[index].todoId,
+                                );
+                              },
+                              icon: const Icon(Icons.delete)),
                         ],
                       ),
                     );
@@ -124,5 +133,8 @@ class _ScreenTodoHomeState extends State<ScreenTodoHome> {
 
   Future<void> loadingDatabase() async {
     await loadDatabase();
+    setState(() {
+      todoModelList = todoModelGlobalList;
+    });
   }
 }
